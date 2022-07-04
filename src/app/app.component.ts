@@ -2,8 +2,7 @@ import {
   Component,
   ElementRef,
   HostListener,
-  Inject,
-  PLATFORM_ID,
+ 
 } from '@angular/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { AppService } from './app.service';
@@ -145,13 +144,8 @@ export class AppComponent {
     private ser: AppService,
     private meta: Meta,
     private title: Title,
-    private element: ElementRef,
- 
-  ) {
-   
-   
-
-  }
+    private element: ElementRef
+  ) {}
   // get screen size
   onWindowResize() {
     if (window.innerWidth > 0 && window.innerWidth < 768) {
@@ -186,10 +180,7 @@ export class AppComponent {
       }
 
       this.slide = id;
-      
     }, 700);
-  
-    
   }
   // api call
   getSliders() {
@@ -206,8 +197,6 @@ export class AppComponent {
             (slide: any) => slide.type === 2
           )[0];
           // });
-        
-        
         }
       },
       (err) => console.error('Error Occured When Get All Employes ' + err)
@@ -218,8 +207,6 @@ export class AppComponent {
     this.ser.getSeo().subscribe(
       (resp) => {
         if (resp.status == 200) {
-         
-          
           this.updateMeta(resp.body);
         }
       },
@@ -227,20 +214,21 @@ export class AppComponent {
     );
   }
   ngOnInit(): void {
+    // check window object
     if (typeof window !== 'undefined') {
-      this.window_width=this.onWindowResize();
+      this.window_width = this.onWindowResize();
       this.getSliders();
     }
-   this.getSeo()
+    // get seo data
+    this.getSeo();
+
     setTimeout(() => {
       this.textState = 'show';
     }, 0);
-  
+   
   }
   // seo
-  updateMeta(data:any) {
-  
-   
+  updateMeta(data: any) {
     this.meta.updateTag({
       name: 'description',
       content: data.mdescription,

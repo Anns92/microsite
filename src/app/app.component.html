@@ -1,27 +1,31 @@
 <div class="position-relative">
 
 
+
   <div class="slider-section" [@scrollAnimation]="state">
     <div class="overlay">
 
     </div>
-    <video loop muted>
-      <source src="assets/mov_bbb.mp4" type="video/mp4">
-
-    </video>
+    <ng-container *ngIf="slide1">
+      <video autoplay loop [muted]="'muted'">
+        <source src={{slide1.video}} type="video/mp4">
+  
+      </video>
+    </ng-container>  
+ 
     <div class="content-section">
 
 
       <div class="">
         <div class="title"  [@textAnimate]="textState">
-          LOREM IPSUM DOLOR
+        <ng-container *ngIf="slide1">{{slide1.title}}</ng-container>  
           <div class="bottom-line">
 
           </div>
         </div>
         <div class="content" [@textAnimate2]="textState">
-          lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio.
-          Quisque volutpat mattis eros.
+          <ng-container *ngIf="slide1">{{slide1.subtitle}}</ng-container>  
+       
         </div>
       </div>
 
@@ -97,4 +101,6 @@
 
   </div>
 
-</div>
+</div> 
+
+

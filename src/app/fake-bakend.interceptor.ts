@@ -86,9 +86,10 @@ const slider = [
   {
     id: 1,
     type: 1,
-    video: 'assets/img/slider/food1.jpg',
-    title: 'Best Customer Choice',
-    subtitle: 'Lorem ipsum dolor sit amet consectetur adipisicing elit',
+    video: 'assets/mov_bbb.mp4',
+    title: 'LOREM IPSUM DOLORe',
+    subtitle: `lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio.
+    Quisque volutpat mattis eros.`,
   },
   {
     id: 2,
