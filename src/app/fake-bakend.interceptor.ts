@@ -29,6 +29,8 @@ export class FakeBakendInterceptor implements HttpInterceptor {
 
     function handleRoute() {
       switch (true) {
+        case url.endsWith('/seo') && method === 'GET':
+          return getSeo();
         case url.match(/\/sliders\/\d+$/) && method === 'GET':
           return getSliders();
         default:
@@ -43,7 +45,7 @@ export class FakeBakendInterceptor implements HttpInterceptor {
     //   return ok(slider);
     // }
     function getSliders() {
-      slider[1].img = 'assets/img/' + screenSize() +'/'+ slider[1].img;
+      slider[1].img = 'assets/img/' + screenSize() + '/' + slider[1].img_origin;
 
       return ok(slider);
     }
@@ -65,13 +67,21 @@ export class FakeBakendInterceptor implements HttpInterceptor {
         default:
           break;
       }
-      return null
+      return null;
+    }
+    function getSeo() {
+      return ok(seo);
     }
     function ok(body?: any) {
       return of(new HttpResponse({ status: 200, body }));
     }
   }
 }
+const seo = {
+  mtitle: 'microsite',
+  mdescription: 'Best Customer Choic,DONEC NEC JUSTO',
+  keywords: 'Best Customer Choic,DONEC NEC JUSTO',
+};
 const slider = [
   {
     id: 1,
@@ -79,18 +89,13 @@ const slider = [
     video: 'assets/img/slider/food1.jpg',
     title: 'Best Customer Choice',
     subtitle: 'Lorem ipsum dolor sit amet consectetur adipisicing elit',
-    mtitle: 'Best Customer Choic',
-    mdescription: 'Best Customer Choic',
-    keywords: 'Best Customer Choic',
   },
   {
     id: 2,
     type: 2,
+    img_origin: 'img_world.jpg',
     img: 'img_world.jpg',
     title: 'DONEC NEC JUSTO',
-    mtitle: 'DONEC NEC JUSTO',
-    mdescription: 'DONEC NEC JUSTO',
-    keywords: 'DONEC NEC JUSTO',
     data: [
       {
         title: 'Lorem ipsum #1',
@@ -143,3 +148,5 @@ export const fakeBackendProvider = {
   useClass: FakeBakendInterceptor,
   multi: true,
 };
+
+

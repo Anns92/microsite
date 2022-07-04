@@ -6,6 +6,7 @@ const BASE_URL="http://localhost:4200"
 export const environment = {
   production: false,
   GET_SLIDER:BASE_URL+"/sliders",
+  GET_SEO:BASE_URL+"/seo",
 };
 
 /*

@@ -1,4 +1,10 @@
-import { Component, ElementRef, HostListener } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  HostListener,
+  Inject,
+  PLATFORM_ID,
+} from '@angular/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { AppService } from './app.service';
 import { Meta, Title } from '@angular/platform-browser';
@@ -9,6 +15,7 @@ import {
   transition,
   animate,
 } from '@angular/animations';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -57,8 +64,6 @@ import {
         style({
           opacity: 1,
           transform: 'translateY(0) scale(1)',
-         
-         
         })
       ),
       state(
@@ -66,7 +71,6 @@ import {
         style({
           opacity: 0,
           transform: 'translateY(-100%) scale(0.5)',
-         
         })
       ),
       transition('show => hide', animate('800ms ease-out')),
@@ -95,7 +99,7 @@ import {
 export class AppComponent {
   state = 'show';
   state2 = 'hide';
-  textState='hide';
+  textState = 'hide';
   slide = 1;
   window_width: any;
   // owl caraosel options
@@ -107,7 +111,7 @@ export class AppComponent {
     dots: false,
     navSpeed: 700,
     // center: true,
-    autoplay:true,
+    autoplay: true,
     navText: ['', ''],
     responsive: {
       0: {
@@ -141,13 +145,14 @@ export class AppComponent {
     private ser: AppService,
     private meta: Meta,
     private title: Title,
-    private element: ElementRef
+    private element: ElementRef,
+ 
   ) {
    
-    this.window_width = this.onWindowResize();
-    console.log('screen', this.window_width);
+   
+
   }
- // get screen size
+  // get screen size
   onWindowResize() {
     if (window.innerWidth > 0 && window.innerWidth < 768) {
       this.customOptions.responsive = {
@@ -181,8 +186,10 @@ export class AppComponent {
       }
 
       this.slide = id;
-      this.updateMeta();
+      
     }, 700);
+  
+    
   }
   // api call
   getSliders() {
@@ -199,31 +206,41 @@ export class AppComponent {
             (slide: any) => slide.type === 2
           )[0];
           // });
-          this.img_path =
-            'assets/img/' + this.window_width + '/' + this.slide2.img;
-          this.updateMeta();
+        
+        
+        }
+      },
+      (err) => console.error('Error Occured When Get All Employes ' + err)
+    );
+  }
+  // api call
+  getSeo() {
+    this.ser.getSeo().subscribe(
+      (resp) => {
+        if (resp.status == 200) {
+         
+          
+          this.updateMeta(resp.body);
         }
       },
       (err) => console.error('Error Occured When Get All Employes ' + err)
     );
   }
   ngOnInit(): void {
-    this.getSliders();
+    if (typeof window !== 'undefined') {
+      this.window_width=this.onWindowResize();
+      this.getSliders();
+    }
+   this.getSeo()
     setTimeout(() => {
-
-      this.textState="show"
+      this.textState = 'show';
     }, 0);
+  
   }
   // seo
-  updateMeta() {
-    let data = null;
-    if (this.slide == 1) {
-      data = this.slide1;
-    } else {
-      data = this.slide2;
-    }
-    console.log('data', data);
-
+  updateMeta(data:any) {
+  
+   
     this.meta.updateTag({
       name: 'description',
       content: data.mdescription,
