@@ -1,0 +1,264 @@
+@import ../assets/sass/index
+
+::ng-deep body
+    margin: 0
+
+.slider-section
+    height: 100vh
+    width: 100%
+    overflow: hidden
+    position: relative
+    background-position: center
+    background-repeat: no-repeat
+    background-size: cover
+    position: absolute
+    top: 0
+    video
+        height: auto
+        width: 100%
+
+        @include mdmin
+            height: 100%
+        @include xlg
+            height: auto
+    .overlay
+        background: white
+        opacity: 0.6
+        height: 100%
+        width: 100%
+        position: absolute
+    .content-section
+        position: absolute
+        top: 0
+        height: inherit
+        width: inherit
+        z-index: 100
+        display: -webkit-box
+        display: -ms-flexbox
+        display: flex
+        -ms-flex-wrap: wrap
+        flex-wrap: wrap
+        -webkit-box-pack: center
+        -ms-flex-pack: center
+        justify-content: center
+        -webkit-box-align: center
+        -ms-flex-align: center
+        align-items: center
+        .title
+            font-size: 3rem
+            text-align: center
+            margin-bottom: 3rem
+            font-weight: 800
+            text-transform: uppercase
+            @include mdmax
+                font-size: 2rem
+
+        .title2
+            color: white
+            margin-bottom: 1.2rem
+            text-align: end
+            @include mdmax
+                text-align: center
+
+        .bottom-line
+            border-bottom: 2px solid
+            width: 8rem
+            margin: auto
+        .content
+            font-size: 1.6rem
+            width: 70%
+            text-align: center
+            margin: auto
+            &:first-letter
+                text-transform: uppercase
+    .logo
+        position: absolute
+        top: 1rem
+        left: 1rem
+        z-index: 101
+        border: 1px solid black
+        padding: 0.3rem 2rem
+        font-size: 1.5rem
+    .discover
+        position: absolute
+        top: 1.5rem
+        right: 2rem
+        z-index: 101
+        padding: 0.3rem 2rem
+        font-size: 0.7rem
+        color: white
+        text-transform: uppercase
+        -webkit-transition: -webkit-transform .3s
+        transition: -webkit-transform .3s
+        -o-transition: transform .3s
+        transition: transform .3s
+        transition: transform .3s, -webkit-transform .3s
+        padding: 3px 5px
+        @include xxlg
+
+            font-size: 1rem
+        &:hover
+            background: white
+            color: black
+            border: 1px solid black
+            border-radius: 5px
+            -webkit-transform: scale(1.1)
+            -ms-transform: scale(1.1)
+            transform: scale(1.1)
+
+    .logo2
+        border: 1px solid grey
+        color: white
+    .next
+        position: absolute
+        bottom: 1rem
+
+        display: -webkit-box
+        display: -ms-flexbox
+        display: flex
+        -webkit-box-pack: center
+        -ms-flex-pack: center
+        justify-content: center
+        z-index: 101
+        font-size: 3rem
+        color: blue
+        width: 100%
+        &:hover
+            webkit-animation: mover 1s infinite alternate
+            animation: mover 1s infinite alternate
+    .indicator
+        position: absolute
+        top: 0
+        right: 0
+        display: flex
+        align-items: center
+
+        height: 100%
+        z-index: 101
+        -webkit-transition: -webkit-transform .5s
+        transition: -webkit-transform .5s
+        -o-transition: transform .5s
+        transition: transform .5s
+        transition: transform .5s, -webkit-transform .5s
+        &:hover
+            -webkit-transform: scaleX(1.4)
+            -ms-transform: scaleX(1.4)
+            transform: scaleX(1.4)
+
+        .black-bar
+            width: 1.5rem
+            height: 0.4rem
+            background: black
+            margin-bottom: 0.4rem
+
+        .blue-bar
+            width: 1.5rem
+            height: 0.4rem
+            background: blue
+            margin-bottom: 0.4rem
+
+.t-card
+    background: white
+    height: 12rem
+    width: 13rem
+    color: black
+    border-bottom-right-radius: 30px
+    border-top-left-radius: 30px
+    padding: 1.5rem 1rem
+    opacity: 0.6
+    @include mdmax
+        width: 10rem
+    @include xxlg
+        width: 17rem
+        height: 14rem
+
+    .title-caro
+        font-size: 1.4rem
+        font-weight: bold
+        margin-bottom: 1rem
+        @include xxlg
+            font-size: 2.4rem
+    .content-caro
+        font-size: 1.2rem
+        @include xxlg
+            font-size: 1.4rem
+.caro-section
+    width: 52%
+    @include mdmax
+        width: 80%
+    @include mdmin
+        width: 65%
+    @include xlg
+        width: 52%
+    @include xxlg
+        width: 45%
+
+    .arrows
+        color: white
+        opacity: 0.6
+.cs-2
+    justify-content: end $im
+    right: 10rem
+    @include mdmax
+        -webkit-box-pack: center $im
+        -ms-flex-pack: center $im
+        justify-content: center $im
+        right: unset
+    @include xxlg
+        right: 16rem
+
+.btn-arrow-left
+    position: absolute
+    top: 50%
+    -webkit-transform: translateY(-50%)
+    -ms-transform: translateY(-50%)
+    transform: translateY(-50%)
+    z-index: 100
+    font-size: 3rem
+    color: white
+    left: -35px
+    @include mdmax
+        display: none
+
+.btn-arrow-right
+    position: absolute
+    top: 50%
+    -webkit-transform: translateY(-50%)
+    -ms-transform: translateY(-50%)
+    transform: translateY(-50%)
+    right: -35px
+    z-index: 100
+    font-size: 3rem
+    color: white
+    @include mdmax
+        display: none
+
+.position-relative
+    position: relative
+.active
+    -webkit-transform: scale(1.5)
+    -ms-transform: scale(1.5)
+    transform: scale(1.5)
+
+@-webkit-keyframes mover
+    0%  
+        -webkit-transform: translateY(0)
+        -ms-transform: translateY(0)
+        transform: translateY(0)
+
+    100%  
+
+        -webkit-transform: translateY(-10px)
+        -ms-transform: translateY(-10px)
+        transform: translateY(-10px)
+
+@keyframes mover
+    0%
+        -webkit-transform: translateY(0)
+        -ms-transform: translateY(0)
+        transform: translateY(0)
+
+    100%
+        -webkit-transform: translateY(-10px)
+        -ms-transform: translateY(-10px)
+        transform: translateY(-10px)

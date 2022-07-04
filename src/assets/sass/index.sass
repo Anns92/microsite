@@ -1,0 +1,8 @@
+@import ./mediaQuery
+@import ./variable
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap')
+
+@function remWide($pixel)
+  $result: ($pixel/7)*10+rem 
+  // $result: math.div($pixel, 7)*10+rem 
+  @return $result

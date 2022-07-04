@@ -1,0 +1,24 @@
+@use "./variable"
+            
+@mixin xs 
+  @media (max-width: #{$sm}) 
+    @content
+@mixin sm 
+  @media (min-width: #{$sm}) 
+    @content
+@mixin mdmax
+  @media (max-width: #{$md}) 
+    @content
+@mixin mdmin 
+  @media (min-width: #{$md}) 
+    @content
+@mixin lg 
+  @media (min-width: #{$lg}) 
+    @content
+@mixin xlg 
+  @media (min-width: #{$xlg}) 
+    @content
+@mixin xxlg 
+  @media (min-width: #{$xxlg}) 
+    @content
+  
